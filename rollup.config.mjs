@@ -52,7 +52,7 @@ const TARGETS = [
 export default {
     input: 'src/index.tsx',
     output: {
-        dir: 'dist',
+        dir: 'docs',
         format: 'esm',
         sourcemap: true
     },
@@ -68,7 +68,7 @@ export default {
         }),
         sass({
             insert: false,
-            output: 'dist/style.css',
+            output: 'docs/style.css',
             outputStyle: 'compressed'
         }),
         image({ dom: true }),
