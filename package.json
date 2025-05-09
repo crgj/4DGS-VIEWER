@@ -1,9 +1,9 @@
 {
-    "name": "model-viewer",
-    "version": "5.3.3",
-    "author": "PlayCanvas<support@playcanvas.com>",
-    "homepage": "https://playcanvas.com",
-    "description": "PlayCanvas glTF Viewer",
+    "name": "4dgs-viewer",
+    "version": "1.0.0",
+    "author": "crgj",
+    "homepage": "https://crgj.github.io/4DGS-VIEWER",
+    "description": "4dgs Viewer",
     "keywords": [
         "2d",
         "3d",
@@ -41,6 +41,7 @@
         "cross-env": "^7.0.3",
         "eslint": "^9.25.1",
         "eslint-import-resolver-typescript": "^4.3.4",
+        "gh-pages": "^6.3.0",
         "globals": "^16.0.0",
         "playcanvas": "^2.7.3",
         "qrious": "^4.0.2",
@@ -56,6 +57,8 @@
     "scripts": {
         "build": "rollup -c",
         "watch": "rollup -c -w",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist",
         "serve": "serve dist",
         "dev": "cross-env concurrently --kill-others \"npm run watch\" \"npm run serve\"",
         "develop:local": "cross-env ENGINE_PATH=../engine npm run develop",
