@@ -355,10 +355,10 @@ const main = () => {
         const frameCount = 100;
 
         for (let i = 0; i < frameCount; i++) {
-            const filename = `Frame${i.toString().padStart(6, '0')}.compressed.ply`;
+            const filename = `Frame${i.toString().padStart(6, '0')}.ply`;
             const url = `${basePath}/${filename}`;
             try { 
-                console.log(`Loading file: ${url}`);
+                //console.log(`Loading file: ${url}`); 
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const blob = await response.blob();
@@ -369,7 +369,7 @@ const main = () => {
             } 
         } 
         viewer.loadFiles(files);
-        console.log('Files loaded from URL:', files);
+        //console.log('Files loaded from URL:', files);
     });
 };
 
