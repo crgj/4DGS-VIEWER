@@ -45,18 +45,35 @@ class App extends React.Component<{ observer: Observer }> {
             <Container id="panel-left" flex resizable='right' resizeMin={220} resizeMax={800}>
                 <div className="header" style={{ display: 'none' }}>
                     <div id="title">
-                        <img src={'static/playcanvas-logo.png'}/>
+                        <img src={'static/playcanvas-logo.png'} />
                         <div>{`MODEL VIEWER v${appVersion}`}</div>
                     </div>
                 </div>
                 <div id="panel-toggle">
-                    <img src={'static/playcanvas-logo.png'}/>
+                    <img src={'static/playcanvas-logo.png'} />
                 </div>
                 <LeftPanel observerData={this.state} setProperty={this._setStateProperty} />
             </Container>
             <div id='canvas-wrapper'>
                 <canvas id="application-canvas" ref={this.canvasRef} />
-                <LoadControls setProperty={this._setStateProperty}/>
+                <div
+  id="loader-progress"
+  style={{
+    position: 'fixed',
+    top: '60%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+    fontSize: '18px',
+    background: 'rgba(0, 0, 0, 0.75)',
+    padding: '10px 20px',
+    borderRadius: '8px',
+    zIndex: 9999
+  }}
+>
+  加载中...
+</div>
+                <LoadControls setProperty={this._setStateProperty} />
                 <SelectedNode sceneData={this.state.scene} />
                 <PopupPanel observerData={this.state} setProperty={this._setStateProperty} />
                 <ErrorBox observerData={this.state} />
@@ -69,7 +86,7 @@ class App extends React.Component<{ observer: Observer }> {
 export default (observer: Observer) => {
     // render out the app
     ReactDOM.render(
-        <App observer={observer}/>,
+        <App observer={observer} />,
         document.getElementById('app')
     );
 };

@@ -271,7 +271,7 @@ const main = () => {
         stencil: false,
         xrCompatible: true,
         powerPreference: 'high-performance'
-    }).then(async(device) => {
+    }).then(async (device) => {
         observer.set('runtime.activeDeviceType', device.deviceType);
 
         // create viewer instance
@@ -343,7 +343,7 @@ const main = () => {
             }
         }
 
-        Promise.all(promises).then(() => { 
+        Promise.all(promises).then(() => {
             if (files.length > 0) {
                 viewer.loadFiles(files);
             }
@@ -353,24 +353,41 @@ const main = () => {
         // 👇 自动添加 PLY 序列文件
         const basePath = './static/ply/001c';
         const frameCount = 100;
+        observer.set('ui.spinner', true);
+        
+        //没有使用react的机制
+        const loadcontrols = document.getElementById('load-controls');
+        loadcontrols.style.display = 'none';
     
+
+        const loaderElement = document.getElementById('loader-progress');
+        if (loaderElement) loaderElement.style.display = 'block';
         for (let i = 0; i < frameCount; i++) {
             const filename = `Frame${i.toString().padStart(6, '0')}.ply`;
             const url = `${basePath}/${filename}`;
-            try {  
+            try {
+                // 更新当前进度提示
+                if (loaderElement) loaderElement.innerText = `正在加载：${filename} (${i + 1}/${frameCount})`;
 
-                console.log(`Loading file: ${url}`); 
+                console.log(`Loading file: ${url}`);
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const blob = await response.blob();
                 const file = new File([blob], filename, { type: 'application/octet-stream' });
                 files.push({ url: URL.createObjectURL(file), filename });
-            } catch (err) { 
+            } catch (err) {
                 console.warn(`[跳过] 无法加载 ${filename}`, err);
-            } 
-        }  
+            }
+        }
+
+        // 加载完成，隐藏提示与 spinner
         viewer.loadFiles(files);
         console.log('Files loaded from URL:', files);
+        if (loaderElement) {
+            loaderElement.innerText = '加载完成';
+            setTimeout(() => loaderElement.style.display = 'none', 1000); // 1秒后隐藏
+        }
+        
     });
 };
 
