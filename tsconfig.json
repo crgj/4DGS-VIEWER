@@ -18,6 +18,6 @@
         "sourceMap": true,
         "target": "es2022",
     },
-    "exclude": [ "**/*.js", "dist"],
+    "exclude": [ "**/*.js", "docs"],
     "include": ["**/*.ts", "**/*.tsx","node_modules/playcanvas/build/playcanvas/src "]
 }

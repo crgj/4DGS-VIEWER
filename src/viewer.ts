@@ -1047,7 +1047,7 @@ class Viewer {
 
         const far = dist + boundRadius;
         const near = Math.max(0.001, dist < boundRadius ? far / 1024 : dist - boundRadius);
-
+ 
         this.camera.camera.nearClip = near;
         this.camera.camera.farClip = far;
         this.light.light.shadowDistance = far;
