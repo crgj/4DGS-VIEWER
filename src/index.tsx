@@ -353,11 +353,12 @@ const main = () => {
         // 👇 自动添加 PLY 序列文件
         const basePath = './static/ply/001c';
         const frameCount = 100;
-
+    
         for (let i = 0; i < frameCount; i++) {
             const filename = `Frame${i.toString().padStart(6, '0')}.ply`;
             const url = `${basePath}/${filename}`;
-            try { 
+            try {  
+                
                 //console.log(`Loading file: ${url}`); 
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
