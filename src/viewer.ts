@@ -213,6 +213,8 @@ class Viewer {
 
     cameraControls: CameraControls;
 
+
+    
     constructor(
         canvas: HTMLCanvasElement,
         graphicsDevice: GraphicsDevice,
@@ -298,7 +300,7 @@ class Viewer {
             properties: {
                 zoomMin: 0.001,
                 zoomMax: 10,
-                pitchRange: new Vec2(-90, 90)
+                pitchRange: new Vec2(-180, 180)
             }
         });
 
